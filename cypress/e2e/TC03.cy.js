@@ -1,21 +1,19 @@
-// cypress/integration/loginWithoutPassword.spec.js
-
 describe("Login Functionality", () => {
   it("should display an error message when trying to login without a password", () => {
-    // Given I am on the login page
+    // Open saucdemo login page
     cy.visit("https://www.saucedemo.com/"); // Ganti dengan URL login jika berbeda
 
-    // When I enter a valid username "standard_user"
+    // Enter a valid username "standard_user"
     cy.get('[data-test="username"]').type("standard_user");
 
-    // And I do not enter a password
-    cy.get('[data-test="password"]').clear(); // Pastikan field password kosong
+    // Empty password
+    cy.get('[data-test="password"]').clear();
 
-    // And I click the login button
+    // Click the login button
     cy.get('[data-test="login-button"]').click();
 
-    // Then I should see an error message "Password is required"
-    cy.get(".error-message-container") // Selector untuk container pesan error
+    // Error message "Password is required"
+    cy.get(".error-message-container") // Selector for container error message
       .should("be.visible")
       .and("contain", "Epic sadface: Password is required");
   });
