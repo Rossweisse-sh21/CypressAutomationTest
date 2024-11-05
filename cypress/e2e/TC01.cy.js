@@ -1,19 +1,19 @@
 describe("Login Valid Test on SauceDemo", () => {
   it("Should successfully login with valid credentials", () => {
-    // Buka halaman login SauceDemo
+    // Open the SauceDemo login page
     cy.visit("https://www.saucedemo.com/");
 
-    // Masukkan username dan password yang valid
+    // Enter valid username and password
     cy.get("#user-name").type("standard_user");
     cy.get("#password").type("secret_sauce");
 
-    // Klik tombol login
+    // Click the login button
     cy.get("#login-button").click();
 
-    // Verifikasi apakah login berhasil dengan mengecek URL
+    // Verify that the login is successful by checking the URL
     cy.url().should("include", "/inventory.html");
 
-    // Verifikasi apakah halaman produk muncul
+    // Verify that the products page is displayed
     cy.contains("Products").should("be.visible");
   });
 });
